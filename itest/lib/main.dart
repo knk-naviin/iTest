@@ -6,7 +6,14 @@ import 'DataPlan.dart';
 
 void main() {
 
-  runApp(MyApp());
+  runApp(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:MyApp(),
+      )
+
+
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -17,9 +24,29 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DataPlan(),
+    return Scaffold(
+
     );
   }
 }
+
+Stack(
+children: [
+Padding(
+padding: const EdgeInsets.only(top: 28.0),
+child: Image.asset("images/itest.png"),
+),
+Padding(
+padding: const EdgeInsets.only(top: 308.0),
+child: Center(
+child: Text(
+'iTest',
+style: TextStyle(
+fontSize: 50.0,
+fontWeight: FontWeight.bold,
+foreground: Paint()..shader = linearGradient),
+),
+),
+),
+],
+)
