@@ -1,23 +1,25 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:itest/screens/home.dart';
 
-class DataPlan extends StatefulWidget {
-  @override
-  _DataPlanState createState() => _DataPlanState();
-}
+class DataPlan extends StatelessWidget {
+  late final limit;
 
-class _DataPlanState extends State<DataPlan> {
-  final Shader linearGradient = LinearGradient(
-    colors: <Color>[Colors.lightBlueAccent, Color(0xff63a4ff)],
-  ).createShader(Rect.fromLTWH(0.0, 1.0, 200.0, 910.0));
   @override
   Widget build(BuildContext context) {
+    final Shader linearGradient = LinearGradient(
+      colors: <Color>[Colors.lightBlueAccent, Color(0xff63a4ff)],
+    ).createShader(Rect.fromLTWH(0.0, 1.0, 200.0, 910.0));
+    GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
           body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
+// mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -42,29 +44,41 @@ class _DataPlanState extends State<DataPlan> {
                 ],
               ),
             ),
-            // Text("Select Your Speed Limit(optional)"),
+// Text("Select Your Speed Limit(optional)"),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Container(
-                          width: 200,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: new BorderRadius.circular(10.0),
-                          ),
-                          child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: 15, right: 15, top: 5),
-                              child: TextFormField(
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      labelText: 'Speed limit(optional)',
-                                      hintText: '1...100'))))),
-                ],
+              child: Form(
+                key: formkey,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Container(
+                            width: 200,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: new BorderRadius.circular(10.0),
+                            ),
+                            child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 15, right: 15, top: 5),
+                                child: TextFormField(
+                                    keyboardType: TextInputType.number,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Enter limit and check";
+                                      }
+                                    },
+                                    onSaved: (value) {
+                                      limit = value;
+                                    },
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        labelText: 'Speed limit(optional)',
+                                        hintText: '1...100'))))),
+                  ],
+                ),
               ),
             ),
             Row(
@@ -75,7 +89,19 @@ class _DataPlanState extends State<DataPlan> {
                       backgroundColor:
                           MaterialStateProperty.all(CupertinoColors.systemBlue),
                       elevation: MaterialStateProperty.all(0)),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (formkey.currentState!.validate()) {
+                      (formkey.currentState!.save());
+                      print(limit);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Home(
+                                  datalimit: limit
+                                )),
+                      );
+                    }
+                  },
                   child: Text("Set Limit"),
                 )
               ],
@@ -119,7 +145,10 @@ class _DataPlanState extends State<DataPlan> {
                               CupertinoColors.systemBlue),
                           elevation: MaterialStateProperty.all(0)),
                       onPressed: () {
-                        Navigator.of(context).pushReplacementNamed('/launchscreen');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
                       },
                       child: Text("Check Speed"),
                     ),

@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:internet_speed_test/internet_speed_test.dart';
 import 'package:internet_speed_test/callbacks_enum.dart';
 import 'package:itest/components/errorMsg.dart';
@@ -12,6 +15,8 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class Home extends StatefulWidget {
+  final datalimit;
+  Home({this.datalimit});
   @override
   _HomeState createState() => _HomeState();
 }
@@ -81,7 +86,7 @@ class _HomeState extends State<Home> {
                 axes: <RadialAxis>[
                   RadialAxis(
                       minimum: 0,
-                      maximum: 20,
+                      maximum: 1,
                       axisLabelStyle: GaugeTextStyle(
                         color: Colors.lightBlue,
                       ),
@@ -252,6 +257,16 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
+            Row(
+              children: [
+                ElevatedButton(
+                    style: ButtonStyle(elevation: MaterialStateProperty.all(0)),
+                    onPressed: () {
+                      SystemNavigator.pop();
+                    },
+                    child: Text("Exit"))
+              ],
+            )
           ],
         ),
       ),

@@ -7,9 +7,9 @@ import 'DataPlan.dart';
 
 void main() {
   runApp(MaterialApp(
-    routes: <String, WidgetBuilder>{
-      '/launchscreen': (BuildContext context) => Home(),
-    },
+    // routes: <String, WidgetBuilder>{
+    //   '/launchscreen': (BuildContext context) => Home(),
+    // },
     debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
