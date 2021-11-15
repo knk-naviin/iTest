@@ -17,6 +17,6 @@ var alertStyle = AlertStyle(
     ),
   ),
   titleStyle: TextStyle(
-    color: Colors.black,
+    color: Colors.lightBlue,
   ),
 );

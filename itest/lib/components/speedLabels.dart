@@ -7,7 +7,7 @@ Text showLabel(String label, double speed, String unit) {
   return Text(
     '$label Speed: $displaySpeed $unit',
     style: TextStyle(
-      color: txtCol,
+      color: Colors.lightBlue,
       fontWeight: FontWeight.bold,
       fontSize: 16,
     ),

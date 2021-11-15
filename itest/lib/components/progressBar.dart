@@ -13,7 +13,7 @@ class ProgressBar {
         displayPer.toStringAsFixed(1) + "%",
         style: new TextStyle(
           fontSize: 14.0,
-          color: txtCol,
+          color: Colors.lightBlue,
         ),
       ),
       linearStrokeCap: LinearStrokeCap.roundAll,

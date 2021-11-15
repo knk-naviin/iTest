@@ -8,7 +8,7 @@ class DataPlan extends StatefulWidget {
 
 class _DataPlanState extends State<DataPlan> {
   final Shader linearGradient = LinearGradient(
-    colors: <Color>[Colors.lightBlueAccent,Color(0xff63a4ff)],
+    colors: <Color>[Colors.lightBlueAccent, Color(0xff63a4ff)],
   ).createShader(Rect.fromLTWH(0.0, 1.0, 200.0, 910.0));
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,9 @@ class _DataPlanState extends State<DataPlan> {
                           backgroundColor: MaterialStateProperty.all(
                               CupertinoColors.systemBlue),
                           elevation: MaterialStateProperty.all(0)),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushReplacementNamed('/launchscreen');
+                      },
                       child: Text("Check Speed"),
                     ),
                   )

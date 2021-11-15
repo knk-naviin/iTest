@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:internet_speed_test/internet_speed_test.dart';
 import 'package:internet_speed_test/callbacks_enum.dart';
@@ -11,7 +10,6 @@ import 'package:itest/constants/palette.dart';
 import 'package:itest/constants/testServer.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-
 
 class Home extends StatefulWidget {
   @override
@@ -46,7 +44,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgCol,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -85,25 +83,25 @@ class _HomeState extends State<Home> {
                       minimum: 0,
                       maximum: 20,
                       axisLabelStyle: GaugeTextStyle(
-                        color: txtCol,
+                        color: Colors.lightBlue,
                       ),
                       ranges: <GaugeRange>[
                         GaugeRange(
                             startValue: 0,
                             endValue: 50,
-                            color: gaugeRange1,
+                            color: Colors.lightBlue,
                             startWidth: 10,
                             endWidth: 10),
                         GaugeRange(
                             startValue: 50,
                             endValue: 100,
-                            color: gaugeRange2,
+                            color: Colors.lightBlue,
                             startWidth: 10,
                             endWidth: 10),
                         GaugeRange(
                             startValue: 100,
                             endValue: 150,
-                            color: gaugeRange1,
+                            color: Colors.lightBlue,
                             startWidth: 10,
                             endWidth: 10)
                       ],
@@ -122,7 +120,7 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
-                                  color: txtCol,
+                                  color: Colors.lightBlue,
                                 ),
                               ),
                             ),

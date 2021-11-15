@@ -9,6 +9,6 @@ void showError(String eMsg) {
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
       backgroundColor: errorBg,
-      textColor: errorTxt,
+      // textColor: Color(0xff23ff4g),
       fontSize: 16.0);
 }
