@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,6 @@ class DataPlan extends StatelessWidget {
       child: Scaffold(
           body: SingleChildScrollView(
         child: Column(
-// mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -44,7 +42,7 @@ class DataPlan extends StatelessWidget {
                 ],
               ),
             ),
-Text("Select Your Speed Limit(optional)"),
+            Text("Select Your Speed Limit(optional)"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
@@ -98,12 +96,12 @@ Text("Select Your Speed Limit(optional)"),
                         context,
                         MaterialPageRoute(
                             builder: (context) => Home(
-                              datalimit: limit,
-                            )),
+                                  datalimit: limit,
+                                )),
                       );
                     }
                   },
-                  child: Text("Set Limit"),
+                  child: Text("Set Limit and check"),
                 )
               ],
             ),

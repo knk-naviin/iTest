@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,10 +6,7 @@ import 'package:internet_speed_test/internet_speed_test.dart';
 import 'package:internet_speed_test/callbacks_enum.dart';
 import 'package:itest/components/errorMsg.dart';
 import 'package:itest/components/progressBar.dart';
-import 'package:itest/components/speedLabels.dart';
 import 'package:itest/constants/alertStyle.dart';
-import 'package:itest/constants/btnStyle.dart';
-import 'package:itest/constants/palette.dart';
 import 'package:itest/constants/testServer.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -74,18 +71,18 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                showLabel('Download', downloadRate, unitText),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                showLabel('Upload', uploadRate, unitText),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: <Widget>[
+            //     showLabel('Download', downloadRate, unitText),
+            //   ],
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: <Widget>[
+            //     showLabel('Upload', uploadRate, unitText),
+            //   ],
+            // ),
             // SfRadialGauge(
             //     title: GaugeTitle(
             //       backgroundColor: Colors.grey,
@@ -370,7 +367,21 @@ class _HomeState extends State<Home> {
                     },
                     child: Text("Exit"))
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 160.0),
+              child: Text("This App is Copyright © 2021 Yash school of technology",style: TextStyle(
+                  color: CupertinoColors.systemGrey2,
+                  fontSize: 12
+              ),),
+            ),
+
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //
+            //   ],
+            // )
           ],
         ),
       ),
