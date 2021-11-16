@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 var alertStyle = AlertStyle(
-  animationType: AnimationType.fromTop,
+  animationType: AnimationType.grow,
   isCloseButton: false,
   isOverlayTapDismiss: false,
   descStyle: TextStyle(
@@ -17,6 +17,6 @@ var alertStyle = AlertStyle(
     ),
   ),
   titleStyle: TextStyle(
-    color: Colors.lightBlue,
+    color: Colors.red,
   ),
 );

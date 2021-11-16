@@ -297,8 +297,8 @@ class _HomeState extends State<Home> {
                                             color: Colors.white, fontSize: 20),
                                       ),
                                       onPressed: () => Navigator.pop(context),
-                                      color: Color.fromRGBO(114, 137, 218, 1.0),
                                       radius: BorderRadius.circular(0.0),
+                                      color: CupertinoColors.systemBlue,
                                     ),
                                   ],
                                 ).show();
