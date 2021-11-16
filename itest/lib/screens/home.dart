@@ -1,5 +1,5 @@
 import 'dart:ffi';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:internet_speed_test/internet_speed_test.dart';
@@ -15,13 +15,19 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class Home extends StatefulWidget {
-  final datalimit;
+
+  late final datalimit;
+
   Home({this.datalimit});
+
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+
+  @override
+
   final internetSpeedTest = InternetSpeedTest();
   final ProgressBar progressBar = ProgressBar();
   double downloadRate = 0;
@@ -48,6 +54,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    print("***********");
+    print(widget.datalimit);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -78,85 +86,176 @@ class _HomeState extends State<Home> {
                 showLabel('Upload', uploadRate, unitText),
               ],
             ),
+            // SfRadialGauge(
+            //     title: GaugeTitle(
+            //       backgroundColor: Colors.grey,
+            //         text: ' ',
+            //         textStyle: const TextStyle(
+            //             fontSize: 20.0, fontWeight: FontWeight.bold)),
+            //
+            //     axes: [
+            //       RadialAxis(canRotateLabels: true,
+            //   showFirstLabel: true,
+            //           showLabels: true,
+            //
+            //           showLastLabel: true,
+            //           showAxisLine: false,
+            //           minimum: 0,
+            //           maximum: 100,
+            //           axisLabelStyle: GaugeTextStyle(
+            //             color: CupertinoColors.systemGrey2
+            //           ),
+            //           ranges: <GaugeRange>[
+            //             GaugeRange(
+            //                 startValue: 0,
+            //                 endValue: 40,
+            //
+            //                 startWidth: 10,
+            //                 endWidth: 10
+            //             ),
+            //             GaugeRange(
+            //                 startValue: 40,
+            //                 endValue: 50,
+            //                 gradient: SweepGradient(
+            //                   startAngle: 20,
+            //                     endAngle: 100,
+            //                     tileMode : TileMode.clamp,
+            //                     colors: [
+            //                       Colors.lightBlue,
+            //                       Colors.white
+            //                     ]
+            //                 ),
+            //                 startWidth: 10,
+            //                 endWidth: 10
+            //             ),
+            //             GaugeRange(
+            //                 startValue: 50,
+            //                 endValue: 100,
+            //                 color: Colors.white,
+            //                 startWidth: 10,
+            //                 endWidth: 10),
+            //             GaugeRange(
+            //                 startValue: 100,
+            //                 endValue: 150,
+            //                 color: Colors.white,
+            //                 startWidth: 10,
+            //                 endWidth: 10)
+            //           ],
+            //           pointers: <GaugePointer>[
+            //             NeedlePointer(
+            //
+            //               knobStyle: KnobStyle(
+            //                 color: Colors.grey,
+            //               ),
+            //               tailStyle: TailStyle(
+            //                 color: Colors.red,
+            //                   lengthUnit : GaugeSizeUnit.logicalPixel
+            //               ),
+            //               gradient: LinearGradient(
+            //                 colors:   [Colors.lightBlue,CupertinoColors.link],
+            //
+            //               ),
+            //               value: displayRate,
+            //               enableAnimation: true,
+            //               needleColor: CupertinoColors.systemGrey,
+            //             ),
+            //           ],
+            //           annotations: <GaugeAnnotation>[
+            //             GaugeAnnotation(
+            //                 widget: Padding(
+            //                   padding: const EdgeInsets.only(top: 78.0),
+            //                   child: Container(
+            //                     child: Text(
+            //                       displayRate.toStringAsFixed(2) + ' ' + unitText,
+            //                       style: TextStyle(
+            //                         fontSize: 25,
+            //                         fontWeight: FontWeight.bold,
+            //                         color: CupertinoColors.systemGrey,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 angle: 90,
+            //                 positionFactor: 0.5)
+            //           ])
+            //
+            //     ]),
             SfRadialGauge(
-                title: GaugeTitle(
-                    text: ' ',
-                    textStyle: const TextStyle(
-                        fontSize: 20.0, fontWeight: FontWeight.bold)),
-                axes: <RadialAxis>[
-                  RadialAxis(
-                      minimum: 0,
-                      maximum: 1,
-                      axisLabelStyle: GaugeTextStyle(
-                        color: Colors.lightBlue,
-                      ),
-                      ranges: <GaugeRange>[
-                        GaugeRange(
-                            startValue: 0,
-                            endValue: 50,
-                            color: Colors.lightBlue,
-                            startWidth: 10,
-                            endWidth: 10),
-                        GaugeRange(
-                            startValue: 50,
-                            endValue: 100,
-                            color: Colors.lightBlue,
-                            startWidth: 10,
-                            endWidth: 10),
-                        GaugeRange(
-                            startValue: 100,
-                            endValue: 150,
-                            color: Colors.lightBlue,
-                            startWidth: 10,
-                            endWidth: 10)
-                      ],
-                      pointers: <GaugePointer>[
-                        NeedlePointer(
-                          value: displayRate,
-                          enableAnimation: true,
-                          needleColor: needleCol,
-                        )
-                      ],
-                      annotations: <GaugeAnnotation>[
-                        GaugeAnnotation(
-                            widget: Container(
-                              child: Text(
+              
+              enableLoadingAnimation: true,
+              axes: <RadialAxis>[
+                RadialAxis(
+                  showAxisLine: true,
+                  showLabels: false,
+                  showTicks: false,
+                  radiusFactor: 0.8,
+                  minimum: 0,
+                  maximum: widget.datalimit == null ? 100 : widget.datalimit,
+                  axisLineStyle: AxisLineStyle(
+                      cornerStyle: CornerStyle.bothCurve,
+                      color: Colors.grey.shade100,
+                      thickness: 20
+                  ),
+                  annotations: <GaugeAnnotation>[
+                    GaugeAnnotation(
+                        angle: 90,
+                        positionFactor: 0,
+                        widget: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
                                 displayRate.toStringAsFixed(2) + ' ' + unitText,
                                 style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.lightBlue,
-                                ),
-                              ),
-                            ),
-                            angle: 90,
-                            positionFactor: 0.5)
-                      ])
-                ]),
-            // SfLinearGauge(
-            //   ranges: [
-            //     LinearGaugeRange(
-            //       startValue: 0,
-            //       endValue: 50,
-            //     ),
-            //   ],
-            //   markerPointers: [
-            //     LinearShapePointer(
-            //       value: 50,
-            //     ),
-            //   ],
-            //   barPointers: [LinearBarPointer(value: 80)],
-            // ),
+                                  color: CupertinoColors.systemGrey,
+                                )),
+                          ],
+                        )),
+                    GaugeAnnotation(
+                        axisValue: displayRate,
+                        angle: 124,
+                        positionFactor: 1.1,
+                        widget: Container(
+                          child: Text('0', style: TextStyle(fontSize: 12)),
+                        )),
+                    GaugeAnnotation(
+                        axisValue: displayRate,
+                        angle: 54,
+                        positionFactor: 1.1,
+                        widget: Container(
+                          child: Text("${widget.datalimit== null ? 100 : widget.datalimit}", style: TextStyle(fontSize: 14)),
+                        )),
+                  ],
+                  pointers: [
+                    RangePointer(
+                      value: displayRate,
+                      width: 29,
+                      // pointerOffset: -6,
+                      cornerStyle: CornerStyle.bothCurve,
+                      color: Colors.white,
+                      gradient: SweepGradient(
+                        startAngle: 20,
+                        endAngle: 100,
+                        tileMode: TileMode.clamp,
+                        colors: [CupertinoColors.link, Colors.lightBlue],
+                      ),
+                    ),
+                    // MarkerPointer(
+                    //
+                    //
+                    //   markerType: MarkerType.text,
+                    // )
+                  ],
+                ),
+              ],
+            ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  child: btnInk,
-                  // shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(80.0)),
-                  // padding: const EdgeInsets.all(0.0),
-                  // color: Colors.red,
-                  // textColor: txtCol,
+                CupertinoButton(
+                  color: CupertinoColors.link,
                   onPressed: () {
                     if (!isTesting) {
                       setState(() {
@@ -254,13 +353,18 @@ class _HomeState extends State<Home> {
                       );
                     }
                   },
-                ),
+                  child: Text("Check Speed"),
+                )
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    style: ButtonStyle(elevation: MaterialStateProperty.all(0)),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            CupertinoColors.systemBlue),
+                        elevation: MaterialStateProperty.all(0)),
                     onPressed: () {
                       SystemNavigator.pop();
                     },

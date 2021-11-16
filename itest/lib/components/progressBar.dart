@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:itest/constants/palette.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -8,32 +9,22 @@ class ProgressBar {
     return  LinearPercentIndicator(
       width: 300,
       lineHeight: 24.0,
+      curve: Curves.easeIn,
       percent: displayPer / 100.0,
       center: Text(
         displayPer.toStringAsFixed(1) + "%",
-        style: new TextStyle(
+        style:  TextStyle(
           fontSize: 14.0,
-          color: Colors.lightBlue,
+          color: Colors.white,
         ),
       ),
+      linearGradient: LinearGradient(
+        colors: [CupertinoColors.link, Colors.lightBlue],
+
+      ),
       linearStrokeCap: LinearStrokeCap.roundAll,
-      backgroundColor: progressBg,
-      progressColor: progressFill,
+      backgroundColor: Colors.grey.shade100,
+      // progressColor: Colors.lightBlueAccent,
     );
-    // CircularPercentIndicator(
-    //   radius: 60.0,
-    //   lineWidth: 25.0,
-    //   percent: displayPer / 100.0,
-    //   center: Text(
-    //     displayPer.toStringAsFixed(1) + "%",
-    //     style: new TextStyle(
-    //       fontSize: 14.0,
-    //       color: txtCol,
-    //     ),
-    //   ),
-    //   // linearStrokeCap: LinearStrokeCap.roundAll,
-    //   backgroundColor: progressBg,
-    //   progressColor: progressFill,
-    // );
   }
 }

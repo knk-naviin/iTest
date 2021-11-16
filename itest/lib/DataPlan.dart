@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:itest/screens/home.dart';
 
 class DataPlan extends StatelessWidget {
-  late final limit;
+  late final double? limit;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class DataPlan extends StatelessWidget {
                 ],
               ),
             ),
-// Text("Select Your Speed Limit(optional)"),
+Text("Select Your Speed Limit(optional)"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
@@ -71,7 +71,8 @@ class DataPlan extends StatelessWidget {
                                       }
                                     },
                                     onSaved: (value) {
-                                      limit = value;
+                                      print("reererererer${value}");
+                                      limit = double.parse(value!);
                                     },
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -97,8 +98,8 @@ class DataPlan extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => Home(
-                                  datalimit: limit
-                                )),
+                              datalimit: limit,
+                            )),
                       );
                     }
                   },
@@ -132,7 +133,7 @@ class DataPlan extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top: 58.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
